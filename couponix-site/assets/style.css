@@ -1,0 +1,1505 @@
+/* ============================================================
+   COUPONIX — SHARED DESIGN SYSTEM  (calm themes: Warm Dusk · Sage Garden · Calm Tide · Rose Quartz)
+   Every page links this file. Page-specific <style> blocks should
+   only contain layout for that page's unique content, never colors,
+   buttons, nav, or the ticket component — those live here so the
+   whole site looks like one product instead of thirteen.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    /* ---------- THEME: DEFAULT — "Warm Dusk" (dark) ----------
+       Soft brown-charcoal with muted candle-light amber. Warm and low-glare
+       for evening use. Text is off-white (not pure white) so long sessions
+       don't shimmer on the eyes. */
+    color-scheme: dark;
+    --picker-filter: invert(1);
+
+    --bg: #1B1714;
+    --bg-soft: #221D19;
+    --surface: #292320;
+    --surface-2: #322B26;
+    --border: #3E3630;
+    --border-strong: #544940;
+    --text: #EDE6DC;
+    --text-dim: #BDB2A5;
+    --text-mute: #9C9083;
+
+    --brand: #E0A458;
+    --brand-dark: #C98B3C;
+    --brand-light: #EDBC7E;
+    --brand-text: #EDBC7E;            /* brand colour when used as TEXT / links */
+    --brand-tint: rgba(224, 164, 88, 0.14);
+    --accent-2: #DE8C68;
+    --on-brand: #241708;              /* text on top of brand fills */
+    --brand-glow: rgba(224, 164, 88, 0.16);
+
+    --nav-bg: rgba(41, 35, 32, 0.82);
+    --overlay: rgba(10, 8, 6, 0.62);
+    --orb-1: rgba(224, 164, 88, 0.10);
+    --orb-2: rgba(222, 140, 104, 0.07);
+    --orb-3: rgba(237, 188, 126, 0.05);
+    --dot: rgba(237, 188, 126, 0.05);
+
+    /* Status */
+    --success: #7CC492;
+    --success-tint: rgba(124, 196, 146, 0.14);
+    --danger: #EE928A;
+    --danger-tint: rgba(238, 146, 138, 0.14);
+    --danger-solid: #B8443E;          /* filled danger buttons / badges */
+    --on-danger: #FFFFFF;
+    --warn: #E0B94F;
+
+    /* Rank tiers — five distinct hues (soft on dark, deeper on light themes) */
+    --bronze: #D9A070;
+    --bronze-tint: rgba(217, 160, 112, 0.16);
+    --silver: #B3BBC9;
+    --silver-tint: rgba(179, 187, 201, 0.16);
+    --gold: #E6C56A;
+    --gold-tint: rgba(230, 197, 106, 0.16);
+    --platinum: #74C7D6;
+    --platinum-tint: rgba(116, 199, 214, 0.16);
+    --ascendant: #AA9EF2;
+    --ascendant-tint: rgba(170, 158, 242, 0.16);
+
+    --radius-sm: 8px;
+    --radius: 14px;
+    --radius-lg: 20px;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.22);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.28);
+    --shadow-lg: 0 18px 44px rgba(0, 0, 0, 0.38);
+    --shadow-inset: rgba(0, 0, 0, 0.30);
+
+    --font-heading: 'Poppins', 'Segoe UI', sans-serif;
+    --font-body: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+/* ============================================================
+   THEMES — every theme owns its whole look (background, surfaces,
+   borders, text, brand + accent, shadows, ambient glow). Design rules
+   shared by all four:
+     • text/background contrast stays between ~11:1 and ~14:1 for body
+       copy (readable, but never harsh pure-white-on-black / black-on-white)
+     • muted labels, links, status colours and rank badges all meet
+       WCAG AA (4.5:1) on the surfaces they sit on
+     • saturation is kept low, glows are faint, no neon
+   Toggle with data-theme="lime|ocean|sweet" on <html>; omit it (or use
+   "default") for Warm Dusk. Keys are unchanged from before, so existing
+   PHP / JS theme switching keeps working.
+   ============================================================ */
+
+/* LIME — "Sage Garden" (light): soft green-tinted paper, muted forest green */
+:root[data-theme="lime"] {
+    color-scheme: light;
+    --picker-filter: none;
+
+    --bg: #F2F5EE;
+    --bg-soft: #E9EEE3;
+    --surface: #FBFCF8;
+    --surface-2: #F4F8EF;
+    --border: #DCE3D2;
+    --border-strong: #C2CCB4;
+    --text: #26302A;
+    --text-dim: #4A574D;
+    --text-mute: #5D6B60;
+
+    --brand: #3D7B55;
+    --brand-dark: #316648;
+    --brand-light: #42805B;
+    --brand-text: #2C6543;
+    --brand-tint: rgba(61, 123, 85, 0.10);
+    --accent-2: #357F7B;
+    --on-brand: #FFFFFF;
+    --brand-glow: rgba(61, 123, 85, 0.20);
+
+    --nav-bg: rgba(251, 252, 248, 0.86);
+    --overlay: rgba(38, 48, 42, 0.42);
+    --orb-1: rgba(61, 123, 85, 0.12);
+    --orb-2: rgba(53, 127, 123, 0.09);
+    --orb-3: rgba(140, 180, 120, 0.10);
+    --dot: rgba(61, 123, 85, 0.07);
+
+    --success: #2A7447;
+    --success-tint: rgba(42, 116, 71, 0.12);
+    --danger: #B03F39;
+    --danger-tint: rgba(176, 63, 57, 0.10);
+    --danger-solid: #B03F39;
+    --warn: #8A6A10;
+
+    --shadow-sm: 0 1px 3px rgba(38, 48, 42, 0.08), 0 1px 2px rgba(38, 48, 42, 0.05);
+    --shadow-md: 0 8px 22px rgba(38, 48, 42, 0.10);
+    --shadow-lg: 0 18px 44px rgba(38, 48, 42, 0.16);
+    --shadow-inset: rgba(38, 48, 42, 0.14);
+
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 18px;
+}
+
+/* OCEAN — "Calm Tide" (dark): slate-navy with soft sky blue + seafoam */
+:root[data-theme="ocean"] {
+    color-scheme: dark;
+    --picker-filter: invert(1);
+
+    --bg: #131B26;
+    --bg-soft: #182231;
+    --surface: #1E2A3A;
+    --surface-2: #253346;
+    --border: #2F4058;
+    --border-strong: #43587A;
+    --text: #E4EAF2;
+    --text-dim: #B0BDCF;
+    --text-mute: #8E9DB4;
+
+    --brand: #7FB2E5;
+    --brand-dark: #649CD4;
+    --brand-light: #A2C9EE;
+    --brand-text: #A2C9EE;
+    --brand-tint: rgba(127, 178, 229, 0.14);
+    --accent-2: #6CC5C0;
+    --on-brand: #0E1B2B;
+    --brand-glow: rgba(127, 178, 229, 0.16);
+
+    --nav-bg: rgba(30, 42, 58, 0.82);
+    --overlay: rgba(6, 10, 18, 0.62);
+    --orb-1: rgba(127, 178, 229, 0.10);
+    --orb-2: rgba(108, 197, 192, 0.07);
+    --orb-3: rgba(162, 201, 238, 0.05);
+    --dot: rgba(162, 201, 238, 0.05);
+
+    --success: #78C79A;
+    --success-tint: rgba(120, 199, 154, 0.14);
+    --danger: #EE9A94;
+    --danger-tint: rgba(238, 154, 148, 0.14);
+}
+
+/* SWEET — "Rose Quartz" (light): blush paper, dusty rose + soft violet */
+:root[data-theme="sweet"] {
+    color-scheme: light;
+    --picker-filter: none;
+
+    --bg: #FBF3F5;
+    --bg-soft: #F6EAEE;
+    --surface: #FFFBFC;
+    --surface-2: #FBF1F4;
+    --border: #EBD6DD;
+    --border-strong: #DDBBC7;
+    --text: #392933;
+    --text-dim: #5D4956;
+    --text-mute: #786472;
+
+    --brand: #B04A6E;
+    --brand-dark: #973C5B;
+    --brand-light: #B44F72;
+    --brand-text: #983B5C;
+    --brand-tint: rgba(176, 74, 110, 0.09);
+    --accent-2: #7B5CB0;
+    --on-brand: #FFFFFF;
+    --brand-glow: rgba(176, 74, 110, 0.18);
+
+    --nav-bg: rgba(255, 251, 252, 0.86);
+    --overlay: rgba(57, 41, 51, 0.42);
+    --orb-1: rgba(176, 74, 110, 0.10);
+    --orb-2: rgba(123, 92, 176, 0.08);
+    --orb-3: rgba(240, 160, 185, 0.12);
+    --dot: rgba(176, 74, 110, 0.06);
+
+    --success: #2A7447;
+    --success-tint: rgba(42, 116, 71, 0.12);
+    --danger: #B03F39;
+    --danger-tint: rgba(176, 63, 57, 0.10);
+    --danger-solid: #B03F39;
+    --warn: #8A6A10;
+
+    --shadow-sm: 0 1px 3px rgba(57, 41, 51, 0.08), 0 1px 2px rgba(57, 41, 51, 0.05);
+    --shadow-md: 0 8px 22px rgba(57, 41, 51, 0.10);
+    --shadow-lg: 0 18px 44px rgba(57, 41, 51, 0.16);
+    --shadow-inset: rgba(57, 41, 51, 0.14);
+
+    --radius-sm: 12px;
+    --radius: 18px;
+    --radius-lg: 26px;
+}
+
+/* Rank tiers on the two LIGHT themes — deeper shades so badge text keeps
+   AA contrast on pale surfaces. */
+:root[data-theme="lime"],
+:root[data-theme="sweet"] {
+    --bronze: #8F521F;    --bronze-tint: rgba(143, 82, 31, 0.13);
+    --silver: #56627A;    --silver-tint: rgba(86, 98, 122, 0.13);
+    --gold: #7D5E00;      --gold-tint: rgba(125, 94, 0, 0.13);
+    --platinum: #16708A;  --platinum-tint: rgba(22, 112, 138, 0.13);
+    --ascendant: #5B47C2; --ascendant-tint: rgba(91, 71, 194, 0.13);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--text);
+    margin: 0 0 10px;
+    line-height: 1.25;
+}
+
+a { color: var(--brand-text); }
+p { color: var(--text-dim); }
+
+.container {
+    width: 90%;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+
+.dr-nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+}
+
+.dr-logo {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 800;
+    text-decoration: none;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dr-logo-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    background: var(--brand);
+    font-size: 15px;
+}
+
+.dr-logo span { color: var(--brand-text); }
+
+.dr-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-wrap: wrap;
+}
+
+.dr-nav-links a {
+    text-decoration: none;
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 13px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    transition: background .15s, color .15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dr-nav-links a svg { flex-shrink: 0; opacity: .85; }
+
+.dr-nav-links a:hover { background: var(--bg-soft); color: var(--text); }
+.dr-nav-links a.active { background: var(--brand); color: var(--on-brand); }
+.dr-nav-links a.active svg { opacity: 1; }
+.dr-nav-links a.logout-link { color: var(--danger); }
+.dr-nav-links a.logout-link:hover { background: var(--danger-tint); color: var(--danger); }
+
+.dr-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dr-nav-bell {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background .15s, color .15s;
+}
+.dr-nav-bell:hover { background: var(--brand-tint); color: var(--brand-text); }
+
+/* Notification badge — e.g. pending resale listings a retailer
+   still needs to verify, shown on the bell icon. */
+.dr-nav-badge {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    background: var(--danger-solid);
+    color: var(--on-danger, #fff);
+    font-size: 10px;
+    font-weight: 800;
+    min-width: 17px;
+    height: 17px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    line-height: 1;
+    box-shadow: 0 0 0 2px var(--surface);
+}
+
+.dr-nav-profile { text-decoration: none; }
+
+/* Profile dropdown — avatar is now a toggle button; Logout lives
+   inside here instead of its own standalone nav icon. */
+.dr-profile-menu { position: relative; }
+
+.dr-nav-profile-btn {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    overflow: hidden;
+    outline: none;
+}
+.dr-nav-profile-btn:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+}
+
+.dr-profile-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 170px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    padding: 6px;
+    z-index: 200;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.dr-profile-dropdown.open { display: flex; }
+
+.dr-profile-dropdown a {
+    text-decoration: none;
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background .15s, color .15s;
+}
+
+.dr-profile-dropdown a:hover { background: var(--bg-soft); color: var(--text); }
+.dr-profile-dropdown a.logout-link { color: var(--danger); }
+.dr-profile-dropdown a.logout-link:hover { background: var(--danger-tint); color: var(--danger); }
+
+/* Theme row — sits inside the profile dropdown between Profile
+   and Logout; each dot sets data-theme on <html> via JS. */
+.dr-theme-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+}
+
+.dr-theme-item .dr-theme-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.dr-theme-swatches {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dr-theme-dot {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+    transition: transform .15s ease, border-color .15s ease;
+}
+
+.dr-theme-dot:hover { transform: scale(1.15); }
+.dr-theme-dot:focus-visible { border-color: var(--text-dim); }
+.dr-theme-dot.active { border-color: var(--text); }
+
+.dr-theme-dot[data-theme-option="default"] { background: linear-gradient(135deg, #EDBC7E, #DE8C68); }
+.dr-theme-dot[data-theme-option="lime"] { background: linear-gradient(135deg, #6FAE87, #4E9E98); }
+.dr-theme-dot[data-theme-option="ocean"] { background: linear-gradient(135deg, #A2C9EE, #6CC5C0); }
+.dr-theme-dot[data-theme-option="sweet"] { background: linear-gradient(135deg, #D9748F, #9C80CC); }
+
+.dr-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brand-light), var(--brand-dark));
+    color: var(--on-brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+    font-family: var(--font-heading);
+}
+
+.dr-nav-points {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    background: var(--brand-tint);
+    color: var(--brand-text);
+    padding: 7px 12px;
+    border-radius: 20px;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.dr-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 0;
+    padding: 12px 20px;
+    border-radius: var(--radius-sm);
+    background: var(--brand);
+    color: var(--on-brand);
+    font-weight: 700;
+    font-size: 14px;
+    font-family: var(--font-body);
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .12s ease, box-shadow .12s ease, background .15s ease;
+}
+
+.dr-btn:hover { background: var(--brand-dark); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.dr-btn:active { transform: translateY(0); }
+.dr-btn:disabled { background: var(--border-strong); color: var(--text-mute); cursor: not-allowed; transform: none; box-shadow: none; }
+
+.dr-btn-outline { background: var(--surface); color: var(--text); border: 1.5px solid var(--border-strong); }
+.dr-btn-outline:hover { background: var(--bg-soft); border-color: var(--brand); color: var(--brand-text); }
+
+.dr-btn-danger { background: var(--danger-solid); color: var(--on-danger, #fff); }
+.dr-btn-danger:hover { background: var(--danger-solid); filter: brightness(1.08); }
+
+.dr-btn-block { width: 100%; }
+.dr-btn-sm { padding: 8px 14px; font-size: 13px; }
+
+/* ============================================================
+   FORM ELEMENTS
+   ============================================================ */
+
+.dr-field { margin-bottom: 16px; }
+
+.dr-field label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.dr-field input[type="text"],
+.dr-field input[type="email"],
+.dr-field input[type="password"],
+.dr-field input[type="tel"],
+.dr-field input[type="number"],
+.dr-field input[type="datetime-local"],
+.dr-field input[type="date"],
+.dr-field input[type="time"],
+.dr-field select,
+.dr-field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-family: var(--font-body);
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color .15s;
+}
+
+/* Tells the browser to draw its OWN chrome for this control — the
+   little calendar/clock icon, the native picker popup, the up/down
+   spinners — in dark mode, so it doesn't fight the input's dark
+   background. Supported in Chrome/Edge/Safari/Firefox. */
+.dr-field input[type="datetime-local"],
+.dr-field input[type="date"],
+.dr-field input[type="time"] {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+    /* The browser's own multi-segment widget has its own internal
+       line-height/padding, which otherwise makes it render shorter
+       and thinner-bordered than the plain text inputs above it.
+       Pin an explicit height so every field in the grid lines up. */
+    height: 46px;
+    line-height: 1.2;
+}
+
+/* Neutralize the internal spacing Chrome/Edge give the mm/dd/yyyy
+   segments so the text sits at the same vertical position as text
+   typed into a normal input, instead of looking vertically shifted. */
+.dr-field input[type="datetime-local"]::-webkit-datetime-edit,
+.dr-field input[type="date"]::-webkit-datetime-edit {
+    padding: 0;
+}
+.dr-field input[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper,
+.dr-field input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+}
+
+/* Belt-and-suspenders for browsers that honor this pseudo-element
+   but not color-scheme: keep the calendar icon visible either way. */
+.dr-field input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+.dr-field input[type="date"]::-webkit-calendar-picker-indicator,
+.dr-field input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: var(--picker-filter);
+    cursor: pointer;
+    opacity: .8;
+    padding: 0;
+    margin-left: 6px;
+}
+.dr-field input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover,
+.dr-field input[type="date"]::-webkit-calendar-picker-indicator:hover,
+.dr-field input[type="time"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+.dr-field input:focus,
+.dr-field select:focus,
+.dr-field textarea:focus { border-color: var(--brand); }
+
+/* Two-column form layout used by the retailer Add/Edit Coupon pages.
+   .dr-field.full spans both columns (title, description). */
+.dr-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 20px;
+}
+.dr-field.full { grid-column: 1 / -1; }
+@media (max-width: 650px) {
+    .dr-form-grid { grid-template-columns: 1fr; }
+}
+
+/* Header row with a title on the left and an action button on the
+   right — used above the retailer's coupon table. */
+.dr-page-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* Generic dark-themed data table, shared by every retailer page
+   that lists rows (coupon catalog, reviewed resale listings). */
+.dr-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.dr-table th, .dr-table td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--border); }
+.dr-table th { color: var(--text-mute); font-size: 11px; text-transform: uppercase; letter-spacing: .03em; }
+.dr-table tbody tr:hover { background: var(--bg-soft); }
+.dr-table td.num, .dr-table th.num { text-align: right; }
+.dr-table td.actions, .dr-table th.actions { text-align: right; white-space: nowrap; }
+.dr-table code { background: var(--bg-soft); padding: 2px 7px; border-radius: 6px; font-size: 12px; }
+
+.dr-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Scroll-wheel quantity stepper: hover it and scroll up/down to
+   change the number, or use the +/- buttons. Clamped by JS to
+   [min, max] from the input's own attributes. */
+.qty-stepper {
+    display: inline-flex;
+    align-items: center;
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    width: fit-content;
+    background: var(--surface);
+}
+
+.qty-stepper button {
+    width: 36px;
+    height: 38px;
+    border: 0;
+    background: var(--bg-soft);
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.qty-stepper button:hover { background: var(--brand-tint); color: var(--brand-text); }
+
+.qty-stepper input {
+    width: 48px;
+    height: 38px;
+    border: 0;
+    border-left: 1.5px solid var(--border-strong);
+    border-right: 1.5px solid var(--border-strong);
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+    -moz-appearance: textfield;
+}
+
+.qty-stepper input::-webkit-outer-spin-button,
+.qty-stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+.qty-hint { display: block; margin-top: 5px; font-size: 11px; color: var(--text-mute); }
+
+/* ============================================================
+   RANK BADGES + PROGRESS
+   ============================================================ */
+
+.rank-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+}
+
+.rank-Bronze    { background: var(--bronze-tint);    color: var(--bronze); }
+.rank-Silver    { background: var(--silver-tint);    color: var(--silver); }
+.rank-Gold      { background: var(--gold-tint);      color: var(--gold); }
+.rank-Platinum  { background: var(--platinum-tint);  color: var(--platinum); }
+.rank-Ascendant { background: var(--ascendant-tint); color: var(--ascendant); }
+
+.rank-progress-track {
+    height: 10px;
+    border-radius: 6px;
+    background: var(--bg-soft);
+    overflow: hidden;
+    margin: 10px 0 6px;
+}
+
+.rank-progress-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--brand-light), var(--brand));
+    transition: width .4s ease;
+}
+
+.rank-progress-label { font-size: 12px; color: var(--text-mute); }
+
+/* ============================================================
+   TICKET-STYLE COUPON CARD
+   The signature visual: a cinema-ticket shape with a perforated,
+   punched-hole divider between the main info and the code stub.
+   ============================================================ */
+
+.ticket-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 22px;
+}
+
+.ticket {
+    --stub-w: 128px;
+    position: relative;
+    display: flex;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    overflow: visible;
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.ticket:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+.ticket::before,
+.ticket::after {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: var(--bg);
+    border-radius: 50%;
+    right: calc(var(--stub-w) - 11px);
+    z-index: 2;
+}
+
+.ticket::before { top: -11px; }
+.ticket::after { bottom: -11px; }
+
+.ticket-main {
+    flex: 1;
+    min-width: 0;
+    padding: 20px 18px;
+}
+
+.ticket-retailer {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--brand-text);
+    margin-bottom: 6px;
+}
+
+.ticket-category {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    background: var(--bg-soft);
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-left: 6px;
+}
+
+.ticket-main h3 {
+    font-size: 17px;
+    margin: 4px 0 8px;
+}
+
+.ticket-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    min-height: 36px;
+}
+
+.ticket-prices { margin-top: 12px; font-size: 13px; }
+.ticket-prices .was { color: var(--text-mute); text-decoration: line-through; margin-right: 8px; }
+.ticket-prices .now { font-size: 22px; font-weight: 800; color: var(--text); font-family: var(--font-heading); }
+.ticket-prices .save { display: block; color: var(--success); font-weight: 700; font-size: 12px; margin-top: 2px; }
+
+.ticket-stub {
+    width: var(--stub-w);
+    flex-shrink: 0;
+    border-left: 2px dashed var(--border-strong);
+    padding: 18px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    background: var(--bg-soft);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.ticket-code {
+    font-family: 'Courier New', monospace;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: .03em;
+    color: var(--text);
+    word-break: break-all;
+}
+
+.ticket-code.locked {
+    filter: blur(4px);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    cursor: not-allowed;
+    transition: filter .15s;
+}
+
+.ticket-lock-hint {
+    font-size: 10px;
+    color: var(--text-mute);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    justify-content: center;
+}
+
+/* Coupon Hut listing status pills */
+.status-pill { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+.status-pending  { background: var(--gold-tint);   color: var(--gold); }
+.status-approved { background: var(--success-tint); color: var(--success); }
+.status-rejected { background: var(--danger-tint);  color: var(--danger); }
+
+.ticket-stock { font-size: 11px; color: var(--text-mute); }
+.ticket-stock strong { color: var(--text); }
+
+.ticket-form { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+
+/* ============================================================
+   TOAST NOTIFICATIONS
+   ============================================================ */
+
+#dr-toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 320px;
+}
+
+.dr-toast {
+    background: var(--surface);
+    border-left: 4px solid var(--success);
+    box-shadow: var(--shadow-md);
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    animation: dr-toast-in .25s ease-out;
+}
+
+.dr-toast.error { border-left-color: var(--danger); }
+
+@keyframes dr-toast-in {
+    from { opacity: 0; transform: translateX(24px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* ============================================================
+   MODAL / POPUP
+   ============================================================ */
+
+.dr-modal-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 16, 36, .6);
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+    animation: dr-fade-in .2s ease;
+}
+
+.dr-modal {
+    width: 90%;
+    max-width: 440px;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px;
+    text-align: center;
+    animation: dr-modal-in .35s cubic-bezier(.2, .9, .3, 1.2);
+}
+
+.dr-modal-icon { font-size: 46px; margin-bottom: 10px; }
+.dr-modal .close-popup { display: block; margin: 14px auto 0; border: 0; background: none; color: var(--text-mute); cursor: pointer; font-weight: 600; }
+
+@keyframes dr-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes dr-modal-in { from { opacity: 0; transform: scale(.92) translateY(12px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+/* ============================================================
+   INFINITE SCROLL LOADER
+   ============================================================ */
+
+#dr-scroll-sentinel { height: 1px; }
+
+.dr-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px;
+    color: var(--text-mute);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.dr-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2.5px solid var(--border-strong);
+    border-top-color: var(--brand);
+    border-radius: 50%;
+    animation: dr-spin .7s linear infinite;
+}
+
+@keyframes dr-spin { to { transform: rotate(360deg); } }
+
+/* ============================================================
+   DASHBOARD — stat cards, listing rows, leaderboard, progress
+   widget, quick-action tiles, thumbnail placeholders
+   ============================================================ */
+
+.stat-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 22px 0 28px;
+}
+
+.stat-card {
+    padding: 20px 22px;
+}
+
+.stat-card .label {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.stat-card .value {
+    font-size: 24px;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    color: var(--text);
+}
+
+.stat-card .sub {
+    font-size: 11px;
+    color: var(--text-mute);
+    margin-top: 4px;
+}
+
+.stat-card.c-earned .label { color: var(--success); }
+.stat-card.c-listings .label { color: var(--brand-text); }
+.stat-card.c-savings .label { color: var(--platinum); }
+.stat-card.c-score .label { color: var(--ascendant); }
+
+.dash-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 22px;
+    align-items: start;
+}
+
+.dash-section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.dash-section-head h2 { font-size: 17px; margin: 0; }
+.dash-section-head a { font-size: 13px; font-weight: 700; text-decoration: none; }
+
+.deal-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.coupon-thumb {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+}
+
+.deal-row-info { flex: 1; min-width: 0; }
+.deal-row-info h3 { font-size: 15px; margin: 0 0 2px; }
+.deal-row-info .cat { font-size: 12px; color: var(--text-mute); }
+
+.deal-row-right { text-align: right; }
+.deal-row-price { font-size: 17px; font-weight: 800; color: var(--brand-text); font-family: var(--font-heading); }
+
+.deal-code-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.deal-code-box {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: var(--brand-text);
+}
+
+.deal-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--brand-tint);
+    color: var(--brand-text);
+    border: 0;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.deal-copy-btn:hover { background: var(--brand); color: var(--on-brand); }
+
+.deal-expiry { font-size: 11px; color: var(--text-mute); margin-top: 6px; }
+
+.progress-card { padding: 22px; margin-bottom: 18px; }
+.progress-card-head { display: flex; align-items: center; gap: 12px; }
+.progress-rank-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--brand-tint); font-size: 20px;
+}
+.progress-card .rank-line strong { display: block; font-size: 14px; }
+.progress-card .rank-line span { font-size: 12px; color: var(--text-mute); }
+
+.leaderboard-card { padding: 22px; margin-bottom: 18px; }
+.leaderboard-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+}
+.leaderboard-row:last-child { border-bottom: 0; }
+.leaderboard-row.is-you { background: var(--brand-tint); margin: 0 -10px; padding: 10px; border-radius: var(--radius-sm); border-bottom: 0; }
+.lb-rank { width: 18px; font-weight: 800; color: var(--text-mute); font-size: 13px; }
+.lb-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--ascendant), var(--platinum));
+    color: var(--on-brand); display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800; flex-shrink: 0;
+}
+.lb-info { flex: 1; min-width: 0; }
+.lb-info strong { display: block; font-size: 13px; }
+.lb-info span { font-size: 11px; color: var(--text-mute); }
+.lb-value { font-size: 13px; font-weight: 800; color: var(--success); }
+
+.quick-actions-card { padding: 22px; }
+.quick-action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.quick-action-tile {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 18px 10px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 700;
+    transition: border-color .15s, transform .15s;
+}
+.quick-action-tile:hover { border-color: var(--brand); transform: translateY(-2px); }
+.quick-action-tile .icon { font-size: 22px; display: block; margin-bottom: 8px; }
+
+@media (max-width: 950px) {
+    .stat-card-grid { grid-template-columns: 1fr 1fr; }
+    .dash-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+    .stat-card-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   GENERIC LAYOUT HELPERS
+   ============================================================ */
+
+.dr-page-header { margin: 32px 0 24px; }
+.dr-page-header h1 { font-size: 28px; }
+.dr-page-header p { margin: 0; font-size: 14px; }
+
+.dr-empty {
+    background: var(--surface);
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius);
+    padding: 70px 25px;
+    text-align: center;
+    color: var(--text-dim);
+}
+
+.dr-empty a { margin-top: 14px; }
+
+@media (max-width: 800px) {
+    .ticket { flex-direction: column; }
+    .ticket-stub {
+        width: 100%;
+        border-left: none;
+        border-top: 2px dashed var(--border-strong);
+        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .ticket::before, .ticket::after { right: auto; }
+    .ticket::before { top: -11px; left: 24px; }
+    .ticket::after { top: -11px; right: 24px; bottom: auto; }
+}
+
+/* ============================================================
+   THEME PACK — eye-catching, per-theme visuals.
+   Everything here reads the tokens defined per theme above, so
+   switching data-theme restyles the whole site at once.
+   ============================================================ */
+
+/* color-scheme is set per theme (dark themes: dark, light themes: light) */
+
+/* ---- Page background: ambient glow orbs + faint dot grid ---- */
+body {
+    background-color: var(--bg);
+    min-height: 100vh;
+    transition: background-color .45s ease, color .3s ease;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+        radial-gradient(1000px 700px at 4% -6%,  var(--orb-1), transparent 62%),
+        radial-gradient(900px 680px at 104% 4%, var(--orb-2), transparent 58%),
+        radial-gradient(1100px 760px at 50% 115%, var(--orb-3), transparent 62%);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
+    background-size: 26px 26px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 65%);
+            mask-image: linear-gradient(to bottom, #000 0%, transparent 65%);
+}
+
+::selection { background: var(--brand); color: var(--on-brand); }
+:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 2px; }
+
+* { scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 10px; border: 2px solid var(--bg); }
+::-webkit-scrollbar-thumb:hover { background: var(--brand-dark); }
+
+a { color: var(--brand-text); }
+
+/* ---- Navbar: frosted glass with a glowing gradient edge ---- */
+.dr-nav {
+    background: var(--nav-bg);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+            backdrop-filter: blur(16px) saturate(150%);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 10px 34px -16px var(--brand-glow);
+}
+
+.dr-nav::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--brand) 30%, var(--accent-2) 70%, transparent);
+    opacity: .5;
+    pointer-events: none;
+}
+
+.dr-logo-badge {
+    background: linear-gradient(135deg, var(--brand-light), var(--brand) 50%, var(--accent-2));
+    box-shadow: 0 4px 16px -2px var(--brand-glow);
+}
+
+.dr-logo span { color: var(--brand-text); }
+
+.dr-nav-links a:hover { background: var(--brand-tint); color: var(--text); }
+
+.dr-nav-links a.active {
+    background: linear-gradient(135deg, var(--brand-light), var(--brand) 55%, var(--brand-dark));
+    color: var(--on-brand);
+    box-shadow: 0 6px 18px -6px var(--brand-glow);
+}
+
+.dr-nav-bell { background: var(--surface-2); border-color: var(--border-strong); }
+.dr-nav-bell:hover { background: var(--brand-tint); color: var(--brand-text); border-color: var(--brand); box-shadow: 0 0 14px -2px var(--brand-glow); }
+
+.dr-nav-points {
+    border: 1px solid var(--border-strong);
+    background: linear-gradient(135deg, var(--brand-tint), transparent);
+}
+
+.dr-avatar {
+    background: linear-gradient(135deg, var(--brand-light), var(--brand) 50%, var(--accent-2));
+    color: var(--on-brand);
+    box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--brand-tint), 0 4px 14px -2px var(--brand-glow);
+}
+
+/* Dropdowns */
+.dr-profile-dropdown {
+    background: var(--surface-2);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-lg), 0 0 40px -18px var(--brand-glow);
+}
+.dr-profile-dropdown a:hover { background: var(--brand-tint); }
+
+.dr-theme-dot { border-color: var(--border-strong); }
+.dr-theme-dot.active {
+    border-color: var(--text);
+    box-shadow: 0 0 0 3px var(--brand-tint), 0 0 14px var(--brand-glow);
+}
+/* swatches now preview each theme's brand + accent pair */
+.dr-theme-dot[data-theme-option="default"] { background: linear-gradient(135deg, #EDBC7E, #DE8C68); }
+.dr-theme-dot[data-theme-option="lime"] { background: linear-gradient(135deg, #6FAE87, #4E9E98); }
+.dr-theme-dot[data-theme-option="ocean"] { background: linear-gradient(135deg, #A2C9EE, #6CC5C0); }
+.dr-theme-dot[data-theme-option="sweet"] { background: linear-gradient(135deg, #D9748F, #9C80CC); }
+
+/* ---- Buttons: gradient + coloured glow ---- */
+.dr-btn:not(.dr-btn-outline):not(.dr-btn-danger):not(:disabled) {
+    background: linear-gradient(135deg, var(--brand-light), var(--brand) 55%, var(--brand-dark));
+    color: var(--on-brand);
+    box-shadow: 0 6px 18px -6px var(--brand-glow), inset 0 1px 0 rgba(255,255,255,.25);
+}
+.dr-btn:not(.dr-btn-outline):not(.dr-btn-danger):not(:disabled):hover {
+    background: linear-gradient(135deg, var(--brand-light), var(--brand-light) 20%, var(--brand) 80%);
+    box-shadow: 0 10px 26px -6px var(--brand-glow), inset 0 1px 0 rgba(255,255,255,.3);
+    filter: saturate(1.08);
+}
+
+.dr-btn-outline {
+    background: transparent;
+    border-color: var(--border-strong);
+    color: var(--text);
+}
+.dr-btn-outline:hover {
+    background: var(--brand-tint);
+    border-color: var(--brand);
+    color: var(--brand-text);
+    box-shadow: 0 0 18px -6px var(--brand-glow);
+}
+
+.dr-btn-danger { background: var(--danger-solid); color: var(--on-danger, #fff); box-shadow: var(--shadow-sm); }
+.dr-btn-danger:hover { background: var(--danger-solid); filter: brightness(1.08); }
+
+/* ---- Cards: subtle gradient surface, lit top edge, glow on hover ---- */
+.dr-card {
+    background: linear-gradient(160deg, var(--surface-2) 0%, var(--surface) 55%, var(--bg-soft) 100%);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,.045);
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.dr-card:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md), 0 0 34px -18px var(--brand-glow), inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+/* ---- Page headings ---- */
+.dr-page-header h1 { color: var(--text); }
+
+/* ---- Forms ---- */
+.dr-field input[type="text"],
+.dr-field input[type="email"],
+.dr-field input[type="password"],
+.dr-field input[type="tel"],
+.dr-field input[type="number"],
+.dr-field input[type="datetime-local"],
+.dr-field input[type="date"],
+.dr-field input[type="time"],
+.dr-field select,
+.dr-field textarea {
+    background: var(--bg-soft);
+    border-color: var(--border-strong);
+    transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.dr-field input:hover, .dr-field select:hover, .dr-field textarea:hover { border-color: var(--brand-dark); }
+.dr-field input:focus, .dr-field select:focus, .dr-field textarea:focus {
+    border-color: var(--brand);
+    background: var(--bg);
+    box-shadow: 0 0 0 4px var(--brand-tint), 0 0 20px -6px var(--brand-glow);
+}
+.dr-field input::placeholder, .dr-field textarea::placeholder { color: var(--text-mute); }
+
+.qty-stepper { background: var(--bg-soft); border-color: var(--border-strong); }
+.qty-stepper button:hover { color: var(--brand-text); }
+
+/* ---- Tables (merged from both stylesheet versions) ---- */
+.dr-table thead th { background: linear-gradient(180deg, var(--brand-tint), transparent); color: var(--text-dim); }
+.dr-table tbody tr { transition: background-color .15s ease; }
+.dr-table tbody tr:hover { background: var(--brand-tint); }
+.dr-table tr:last-child td { border-bottom: 0; }
+.dr-table .num { font-weight: 700; }
+.dr-table .actions a, .dr-table .actions button { margin-left: 6px; }
+.dr-table code { background: var(--bg-soft); border: 1px solid var(--border); color: var(--brand-text); }
+.dr-page-toolbar { margin-bottom: 18px; }
+@media (max-width: 700px) { .dr-table { display: block; overflow-x: auto; } }
+
+/* ---- Ticket coupon card ---- */
+.ticket {
+    background: linear-gradient(150deg, var(--surface-2), var(--surface) 60%, var(--bg-soft));
+    border-color: var(--border);
+    box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,.04);
+}
+.ticket:hover {
+    border-color: var(--brand-dark);
+    box-shadow: var(--shadow-md), 0 0 40px -14px var(--brand-glow);
+}
+/* glowing accent tab down the left edge */
+.ticket-main { position: relative; padding-left: 24px; }
+.ticket-main::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 18px; bottom: 18px;
+    width: 4px;
+    border-radius: 0 4px 4px 0;
+    background: linear-gradient(180deg, var(--brand-light), var(--brand), var(--accent-2));
+    box-shadow: 0 0 14px var(--brand-glow);
+}
+.ticket-stub {
+    background: linear-gradient(180deg, var(--brand-tint), var(--bg-soft) 75%);
+    border-left-color: var(--border-strong);
+}
+.ticket-category { border: 1px solid var(--border); }
+.ticket-prices .now { color: var(--text); }
+.ticket-code { color: var(--brand-text); }
+@media (max-width: 800px) {
+    .ticket-main::before { top: 0; bottom: auto; left: 18px; right: 18px; width: auto; height: 4px; border-radius: 0 0 4px 4px; }
+    .ticket-main { padding-left: 18px; padding-top: 24px; }
+}
+
+/* ---- Rank progress ---- */
+.rank-progress-track { background: var(--bg); box-shadow: inset 0 1px 3px var(--shadow-inset); border: 1px solid var(--border); }
+.rank-progress-fill {
+    background: linear-gradient(90deg, var(--brand-dark), var(--brand), var(--accent-2));
+    box-shadow: 0 0 14px var(--brand-glow);
+}
+.progress-rank-icon { background: linear-gradient(135deg, var(--brand-tint), transparent); border: 1px solid var(--border-strong); box-shadow: 0 0 18px -6px var(--brand-glow); }
+
+/* ---- Dashboard ---- */
+.stat-card { position: relative; overflow: hidden; }
+.stat-card::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--c, var(--brand)), transparent 85%);
+}
+.stat-card::after {
+    content: "";
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 140px; height: 140px;
+    background: radial-gradient(circle, var(--c-glow, var(--brand-tint)), transparent 68%);
+    pointer-events: none;
+}
+.stat-card > * { position: relative; z-index: 1; }
+.stat-card.c-earned   { --c: var(--success);   --c-glow: var(--success-tint); }
+.stat-card.c-listings { --c: var(--brand);     --c-glow: var(--brand-tint); }
+.stat-card.c-savings  { --c: var(--platinum);  --c-glow: var(--platinum-tint); }
+.stat-card.c-score    { --c: var(--ascendant); --c-glow: var(--ascendant-tint); }
+
+.deal-row:hover { transform: translateX(3px); }
+.deal-row { transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.deal-code-box { border: 1px dashed var(--brand-dark); background: var(--bg-soft); }
+.deal-copy-btn:hover { background: linear-gradient(135deg, var(--brand-light), var(--brand)); color: var(--on-brand); }
+
+.leaderboard-row.is-you {
+    background: linear-gradient(90deg, var(--brand-tint), transparent);
+    box-shadow: inset 3px 0 0 var(--brand);
+}
+.lb-avatar { background: linear-gradient(135deg, var(--brand), var(--accent-2)); color: var(--on-brand); }
+
+.quick-action-tile { background: linear-gradient(160deg, var(--surface-2), var(--bg-soft)); }
+.quick-action-tile:hover {
+    border-color: var(--brand);
+    background: linear-gradient(160deg, var(--brand-tint), var(--bg-soft));
+    box-shadow: 0 8px 24px -12px var(--brand-glow);
+}
+
+.dr-empty { background: linear-gradient(160deg, var(--surface), var(--bg-soft)); border-color: var(--border-strong); }
+
+/* ---- Toasts, modal, loader ---- */
+.dr-toast { background: var(--surface-2); border: 1px solid var(--border-strong); border-left: 4px solid var(--success); box-shadow: var(--shadow-md), 0 0 30px -14px var(--brand-glow); }
+.dr-toast.error { border-left-color: var(--danger); }
+
+.dr-modal-bg { background: var(--overlay); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.dr-modal {
+    position: relative;
+    background: linear-gradient(160deg, var(--surface-2), var(--surface));
+    border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-lg), 0 0 80px -20px var(--brand-glow);
+    overflow: hidden;
+}
+.dr-modal::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--brand-light), var(--brand), var(--accent-2));
+}
+
+.dr-spinner { border-color: var(--border-strong); border-top-color: var(--brand-light); box-shadow: 0 0 10px -2px var(--brand-glow); }
+
+/* ---- Respect reduced-motion preferences ---- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation-duration: .01ms !important; }
+}
+
+/* keep the bell a positioning parent for its notification badge */
+.dr-nav-bell { position: relative; }
